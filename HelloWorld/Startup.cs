@@ -33,6 +33,7 @@ namespace HelloWorld
                 options.UseSqlite(_configuration.GetConnectionString("DefaultConnection"));
             });
             services.AddControllers().AddNewtonsoftJson();
+            services.AddCors();
             // services.AddSwaggerGen();
 
         }
@@ -50,6 +51,8 @@ namespace HelloWorld
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
 
             app.UseAuthorization();
 
